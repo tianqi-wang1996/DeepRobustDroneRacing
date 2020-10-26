@@ -4,6 +4,8 @@ This kind of modularazation enables us to combine the robustness provided by dat
 
 Our navigation system was only trained using synthetic textures but is able to navigate in environment with randomly-chosen photorealistic textures.
 
+Video: [YouTube](https://youtu.be/8ws1VSvASHc)
+
 <p align="center">
   <img src="./docs/sim2real.gif" alt="ddr">
 </p>
@@ -12,7 +14,7 @@ Our navigation system was only trained using synthetic textures but is able to n
 
 ### Requirements
 
-The code was tested with Ubuntu 18.04 and ROS Melodic.
+The code was tested with Ubuntu 18.04 and ROS Melodic (Python2.7).
 Different OS and ROS versions are possible but with the possibility of potential conflict.
 
 ### Step-by-Step Procedure
@@ -20,41 +22,31 @@ Different OS and ROS versions are possible but with the possibility of potential
 Use the following commands to create a new catkin workspace and a virtual environment with all the required dependencies.
 
 ```bash
-export ROS_VERSION=melodic
-mkdir drone_racing_ws
-cd drone_racing_ws
-export CATKIN_WS=./catkin_ddr
-mkdir -p $CATKIN_WS/src
-cd $CATKIN_WS
-catkin init
-catkin config --extend /opt/ros/$ROS_VERSION
-catkin config --merge-devel
-catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS=-fdiagnostics-color
-cd src
+# first install Anaconda in your computer for using virtual environments
+# then create a new environment with python2.7 option
+conda create -n virtual_env python=2.7.17
+# activate this environment
+conda activate virtual_env
 
-git clone https://github.com/uzh-rpg/sim2real_drone_racing.git
-cd sim2real_drone_racing
-cd ..
-vcs-import < sim2real_drone_racing/dependencies.yaml
-touch octomap/octovis/CATKIN_IGNORE
+# install required packages
+pip install -r python_dependencies.txt
+# install tensoflow
+conda install tensorflow-gpu==1.12.0
+
+#create a new ros workpace
+cd ~
+mkdir -p drone_racing_worksapce/src
+cd ~/drone_racing_worksapce/src
+catkin init
+catkin build
+
+# download the ros packages included in this repository
+cd ~/drone_racing_worksapce/src
+git clone https://github.com/tianqi-wang1996/DeepRobustDroneRacing.git
 
 # Build and re-source the workspace
 catkin build
-. $CATKIN_WS/devel/setup.bash
-
-# Create your learning environment
-virtualenv -p python2.7 ./droneflow
-source ./droneflow/bin/activate
-
-# If you have a GPU, use the following command. You will need to have CUDA 10.0 installed for it to work.
-#pip install tensorflow-gpu==1.13.1
-# If you don't have a GPU, uncomment the previous line and comment the next
-pip install tensorflow==1.13.1
-
-# Install Required Python dependecies
-cd $CATKIN_WS/src/sim2real_drone_racing
-pip install -r python_dependencies.txt
-
+source ../devel/setup.bash
 ```
 
 
