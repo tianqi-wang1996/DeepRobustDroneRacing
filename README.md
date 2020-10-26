@@ -1,41 +1,19 @@
-# DeepRobustDroneRacing
+# Robust Drone Racing based on Imitation Learning and Modularization
 In this repository, we modularize the whole navigation drone system, and utilize imitation learning to train the perception module.
+This kind of modularazation enables us to combine the robustness provided by data-based approaches and the precision provided by model-based approaches. 
 
-
-# Deep Drone Racing: From Simulation to Reality with Domain Randomization
-
-This repo contains the implementation of a zero-shot sim2real method for drone racing.
+Our navigation system was only trained using synthetic textures but is able to navigate in environment with randomly-chosen photorealistic textures.
 
 <p align="center">
   <img src="./docs/sim2real.gif" alt="ddr">
 </p>
 
-For more information visit the project page:[http://rpg.ifi.uzh.ch/research\_drone\_racing.html](http://rpg.ifi.uzh.ch/research_drone_racing.html).
-
-#### Citing
-
-If you use this code in an academic context, please cite the following publication:
-
-Paper: [Robust Drone Navigation based on Imitaion Learning and Modularization](http://rpg.ifi.uzh.ch/docs/TRO19_Loquercio.pdf)
-
-Video: [YouTube](https://youtu.be/vdxB89lgZhQ)
-
-```
-@article{
-  title={Robust Drone Navigation based on Imitaion Learning and Modularization},
-  doi={},
-  author={Tianqi Wang, Dong Eui Chang},
-  Conference={IEEE},
-  year={2021}
-}
-
-```
 ## Installation
 
 ### Requirements
 
 The code was tested with Ubuntu 18.04 and ROS Melodic.
-Different OS and ROS versions are possible but not supported.
+Different OS and ROS versions are possible but with the possibility of potential conflict.
 
 ### Step-by-Step Procedure
 
