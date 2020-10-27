@@ -58,7 +58,7 @@ and change the this line:
 ```bash
 <arg name="ckpt_file" default="$(find deep_drone_racing_learner)/src/ddr_learner/results/best_model_without_warmup_1.5/model_latest"/>
 ```
-Before testing, there are several parameters in [main.yaml](./sim2real_drone_racing/drone_raning/drone_racing/parameters/main.yaml) that you can play with:
+Before testing, there are several parameters in [main.yaml](./sim2real_drone_racing/drone_racing/drone_racing/parameters/main.yaml) that you can play with:
 ```bash
 # the following two maximum velocity settings (preferably set to be the same)
 global_traj_max_v: 6.0             # max velocity of precomputed global trajectory
@@ -113,31 +113,84 @@ After training finishes, following the aforementioned commands in Race with Trai
 \
 If you want to follow the whole procedures of how we got our final accumulated training data, read the following section: 
 ## Our Customized Data Collection and Training Strategy
-### Step1: Generate data
 
+Before start, first modify [simulation_no_quad_gui.launch](./sim2real_drone_racing/drone_racing/drone_racing/launch/simulation_no_quad_gui.launch) to change the diretory that you store the traning data.
 ```bash
-cd drone_racing_ws
-. ./catkin_ddr/devel/setup.bash
-. ./droneflow/bin/activate
+<param name="root_dir" value="$(find deep_drone_racing_learner)/data/Traning_data_my"/>
+
+```
+Each DAgger step consist of two sub-steps: generating new data & train on accumulated data.
+### DAgger Step 1: Generate data
+####If we don't have any trained checkpoint yet, refer to the following instructions:
+
+Sine we don't have any trained network initially, we only use the expert policy to collect data by setting use_DAgger to false in [main.yaml](./sim2real_drone_racing/drone_racing/drone_racing/parameters/main.yaml)
+```bash
+use_DAgger : false
+
+```
+Open one terminal and type
+```bash
+conda activate virtual_env
+roscore
+
+```
+Open another terminal and type
+```bash
+conda activate virtual_env
+roscd drone_racing/resources/scripts
+python collect_data.py
+
+```
+####If we have trained checkpoints, refer to the following instructions:
+Set use_DAgger to true in [main.yaml](./sim2real_drone_racing/drone_racing/drone_racing/parameters/main.yaml)
+```bash
+use_DAgger : true
+
+```
+Change DAgger_threshold to a value that we'll described in detail below.
+```bash
+rospy.set_param("/DAgger_threshold", 0.5) (just as an example)
+
+
+```
+Normally, the partialy-trained network is used to fly the drone but if the drone flies away from the global trajectory (bigger than this threshold), the expert policy is used to recover it. As the training progresses, we can allow bigger DAgger_threshold to collect more diverse data.
+We initially set DAgger_threshold to be 0.5 m, and increase it by 0.5 m once we have gone through DAgger Step 1 & DAgger Step 2 for one time.
+
+Modify [net_controller_launch.launch](./sim2real_drone_racing/learning/deep_drone_racing_learning_node/launch/net_controller_launch.launch) 
+and change the checkpoint file to the latest one we got from the previous DAgger Step 2:
+```bash
+<arg name="ckpt_file" default="$(find deep_drone_racing_learner)/src/ddr_learner/results/best_model_checkpoint/model_latest"/>
+```
+Open one terminal and type
+```bash
+conda activate virtual_env
+roslaunch deep_drone_racing_learning  net_controller_launch.launch
+
+```
+
+Open another terminal and type
+```bash
+conda activate virtual_env
 roscd drone_racing/resources/scripts
 python collect_data.py
 
 ```
 
-It is possible to change parameters (number of iteration per background/ gate texture/ etc. ) in the above script.
-Defaults should be good. Optionally, you can use the data we have already collected, available at [this link](http://rpg.ifi.uzh.ch/datasets/sim2real_ddr/simulation_training_data.zip).
 
-### DAgger Step2: Train the Network
-
+### DAgger Step 2: Train the Network
+Modify the file [train_model.sh](./sim2real_drone_racing/learning/deep_drone_racing_learner/src/ddr_learner/train_model.sh) 
 ```bash
-roscd deep_drone_racing_learner/src/ddr_learner
+# change the training data directory
+train_data=../../data/Training_final_test (just as an example)
+# change the checkpoint directory where you want to store the trained checkpoints
+--checkpoint_dir=./results/best_model_checkpoint (just as an example)
 
 ```
 
-Modify the file [train\_model.sh](./learning/deep_drone_racing_learner/src/ddr_learner/train_model.sh) to add the path of validation data collected in the real world, which you can download from [this link](http://rpg.ifi.uzh.ch/datasets/sim2real_ddr/validation_real_data.zip).
-Then, run the following command to train the model.
-
+Then, run the training bash file
 ```bash
+conda activate virtual_env
+roscd deep_drone_racing_learner/src/ddr_learner
 ./train_model.sh
 
 ```
