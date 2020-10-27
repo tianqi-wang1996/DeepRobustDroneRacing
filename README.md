@@ -198,4 +198,4 @@ roscd deep_drone_racing_learner/src/ddr_learner
 
 ```
 
-We view DAgger Step 1 plus DAgger Step 2 as one DAgger step. After you finish one DAgger step, you can test the trained network's performance by following the instructions under section Race with Trained Network. In our case, we found that, after three DAgger steps (DAgger_threshold increases to 1.5 m now), the trained network's performance is good enough and further repeat of DAgger step does nor improve the performance. You can try yours as well, maybe you'll train a better network!
+We view DAgger Step 1 plus DAgger Step 2 as one DAgger step. After you finish one DAgger step, you can test the trained network's performance by following the instructions under section Race with Trained Network. In our case, we found that, after three DAgger steps (DAgger_threshold increases to 1.5 m now), the trained network's performance is good enough and further repeat of DAgger step does not improve the performance. You can try yours as well, maybe you'll train a better network!
