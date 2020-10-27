@@ -30,7 +30,7 @@ conda activate virtual_env
 
 # install required packages
 pip install -r python_dependencies.txt
-# install tensoflow
+# install tensoflow using anaconda
 conda install tensorflow-gpu==1.12.0
 
 #create a new ros workpace
@@ -53,7 +53,7 @@ source ../devel/setup.bash
 ## Race with Trained Network
 
 We have provided our final trained checkpoint file in this repository.
-If you want to change the checkpoint file used for testing, go to sim2real_drone_racing/learning/deep_drone_racing_learning_node/launch/net_controller_launch.launch
+If you want to change the checkpoint file used for testing, go to [net_controller_launch.launch](./sim2real_drone_racing/learning/deep_drone_racing_learning_node/launch/net_controller_launch.launch) sim2real_drone_racing/learning/deep_drone_racing_learning_node/launch/net_controller_launch.launch
 and change the this line
 <arg name="ckpt_file" default="$(find deep_drone_racing_learner)/src/ddr_learner/results/best_model_without_warmup_1.5/model_latest"/>
 
