@@ -106,10 +106,12 @@ train_data=../../data/Training_final_test (just as an example)
 
 ```
 After training finishes, following the aforementioned commands in Race with Trained Network to test your newly trained network.
-
-
-
-
+\
+\
+\
+\
+\
+\
 
 
 If you want to follow the whole procedures of how we got our final accumulated training data, read the following section: 
