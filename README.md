@@ -58,6 +58,22 @@ and change the this line:
 ```bash
 <arg name="ckpt_file" default="$(find deep_drone_racing_learner)/src/ddr_learner/results/best_model_without_warmup_1.5/model_latest"/>
 ```
+Before testing, there are several parameters in [main.yaml](./sim2real_drone_racing/drone_raning/drone_racing/parameters/main.yaml) that you can play with:
+```bash
+# the following two maximum velocity settings (preferably set to be the same)
+global_traj_max_v: 6.0             # max velocity of precomputed global trajectory
+max_velocity: 6.0                   # max velocity
+
+# perturb the gate positions before each experiment
+gates_static_amplitude: 1.5       # max amplitude for statically replacing the gates at new runs
+
+# even make the gates keep moving while testing
+moving_gates: true                 # triggers dynamically moving gates
+# if moving_gates is set to be false, then the two parameters below would be ignored
+gates_dyn_amplitude: 1.0           # max amplitude for moving at test time
+speed_moving_gates: 0.3             # max speed moving gates
+
+```
 
 Open a terminal and type:
 ```bash
@@ -80,12 +96,16 @@ In this paper, we use a customized DAgger policy to alleviate the drawback of pu
 ```bash
 conda activate virtual_env
 roscd deep_drone_racing_learner/src/ddr_learner
-# under this folder, first modify the training data directory in the training bash file - train_model.sh, change this line:
-train_data=../../data/Training_final_test
+# under this folder, first modify the training bash file - train_model.sh,
+# change the training data directory
+train_data=../../data/Training_final_test (just for example)
+# change the checkpoint directory where you want to store the trained checkpoints
+--checkpoint_dir=./results/best_final_1024 (just for example)
 # then, run the training bash file
 ./train_model.sh
 
 ```
+After training finishes, following the aforementioned commands to test your newly trained network.
 
 
 ### DAgger Step1: Generate data
