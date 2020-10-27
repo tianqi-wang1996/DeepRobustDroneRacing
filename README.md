@@ -184,7 +184,10 @@ Modify the file [train_model.sh](./sim2real_drone_racing/learning/deep_drone_rac
 train_data=../../data/Training_final_test (just as an example)
 # change the checkpoint directory where you want to store the trained checkpoints
 --checkpoint_dir=./results/best_model_checkpoint (just as an example)
-
+# you can also change the number of training epochs, ours should be fine
+--max_epochs=100
+# we found that for each DAgger Step 2, traning from scratch performs better, as a result we set resume_train to false
+--resume_train=False
 ```
 
 Then, run the training bash file, open one terminal and type
@@ -194,3 +197,5 @@ roscd deep_drone_racing_learner/src/ddr_learner
 ./train_model.sh
 
 ```
+
+We view DAgger Step 1 plus DAgger Step 2 as one DAgger step. After you finish one DAgger step, you can test the trained network's performance by following the instructions under section Race with Trained Network. In our case, we found that, after three DAgger steps (DAgger_threshold increases to 1.5 m now), the trained network's performance is good enough and further repeat of DAgger step does nor improve the performance. You can try yours as well, maybe you'll train a better network!
