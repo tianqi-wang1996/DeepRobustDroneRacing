@@ -74,7 +74,7 @@ roslaunch test_racing test_racing.launch
 ## Train your own Drone Racing Model
 You can also generate data in simulation and train your model on it. 
 
-In this paper, we use a customized DAgger policy to alleviate the drawback of pure imitation learning. If you want skip the time-consuming procedure of data collection and intermediate training process, our final colllected data is shared in [this link (http://rpg.ifi.uzh.ch/datasets/sim2real_ddr/validation_real_data.zip).
+In this paper, we use a customized DAgger policy to alleviate the drawback of pure imitation learning. If you want skip the time-consuming procedure of data collection and intermediate training process, our final colllected data is shared in [this link] (http://rpg.ifi.uzh.ch/datasets/sim2real_ddr/validation_real_data.zip).
 
 
 ### Generate data
