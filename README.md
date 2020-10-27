@@ -55,7 +55,9 @@ source ../devel/setup.bash
 We have provided our final trained checkpoint file in this repository.
 If you want to change the checkpoint file used for testing, go to [net_controller_launch.launch](./sim2real_drone_racing/learning/deep_drone_racing_learning_node/launch/net_controller_launch.launch) sim2real_drone_racing/learning/deep_drone_racing_learning_node/launch/net_controller_launch.launch
 and change the this line
-"<arg name="ckpt_file" default="$(find deep_drone_racing_learner)/src/ddr_learner/results/best_model_without_warmup_1.5/model_latest"/>"
+```bash
+<arg name="ckpt_file" default="$(find deep_drone_racing_learner)/src/ddr_learner/results/best_model_without_warmup_1.5/model_latest"/>
+```
 
 Open a terminal and type:
 ```bash
