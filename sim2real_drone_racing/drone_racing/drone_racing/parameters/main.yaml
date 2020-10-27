@@ -1,0 +1,57 @@
+# Data collection
+use_DAgger : true                # if true, then use our modified DAgger policy during data collection, if false only use the expert policy
+max_divergence: 10                 # maximum divergence between state estimate and desired state
+
+global_traj_max_v: 6.0             # max velocity of precomputed global trajectory
+max_velocity: 6.0                   # max velocity
+min_velocity: 0.0                   # min velocity
+
+d_replan: 1.5                       # when within this distance to waypoint, plan to next waypoint
+load_existing_trajectory: false      # load saved global trajectory
+horizon_min: 2.0                    # minimum length to plan trajectories when collecting data
+horizon_max: 10.0
+
+num_of_gates: 7                    # total number of gates on the track
+curr_goal_idx: 0                   # we start in front of the last gate
+
+record_data: true                   # save images and corresponding trajectories to disk
+throttle_record: 1                  # save an image every throttle_record-th planning iteration
+wait_n_sec_till_record: 0.0         # don't record data during initial transient
+perturb_actions: false             # add some noise to executed actions for data augmentation
+
+# parameters for the planning length during training adn testing time 
+planning_length: 5.0                # coefficient used for calcualting the planning length
+planning_length_min: 0.0            # minimum planning length
+planning_length_max: 3.0            # maximum planning length
+
+# General
+# plan_every_nth_iteration: 3         # the mainloop runs at 50Hz, replan the trajectory every n-th iteration of the mainloop
+plan_every_nth_iteration: 2       # the mainloop runs at 50Hz, replan the trajectory every n-th iteration of the mainloop
+# trajectory_max_z: 10.0              # maximum altitude of trajectory
+trajectory_max_z: 100.0              # maximum altitude of trajectory
+trajectory_min_z: 0.0               # minimum altitude of trajectory
+gate_height: 0.8                    # waypoint z with respect to bottom of gate
+
+# Moving the gates
+moving_gates: false                 # triggers dynamically moving gates
+gates_dyn_amplitude: 1.0           # max amplitude for moving at test time
+speed_moving_gates: 0.3             # max speed moving gates
+
+gates_static_amplitude: 1.5       # max amplitude for statically replacing the gates at new runs
+
+# Rapid Trajectory Parameters
+min_normalized_thrust: 0.0          # min allowed normalized thrust
+max_normalized_thrust: 50.0         # max allowed normalized thrust
+max_roll_pitch_rate: 30.0           # max allowed roll/pitch rate
+min_trajectory_sampling_time: 0.05  # trajectory is tested for feasibility in these time steps
+
+# Planning parameters
+camera_fov_yaw: 50.0                # half cone opening angle, does not have to equal actual FOV of camera
+camera_fov_pitch: 35.0              # half cone opening angle, does not have to equal actual FOV of camera
+max_failed_trials: 5                # after max_failed_trials the quadrotor stops
+
+# Trajectory Visualization
+trajectory_viz_freq: 10.0           # trajectory sampling frequency to visualize curve
+show_full_trajectory: true          # show full trajectory for each planning step
+viz_horizon: 5.0                    # [s] show planned trajectory up to this horizon, only possible if above is false
+show_all_trajectories: true         # show only newest trajectory if set to true

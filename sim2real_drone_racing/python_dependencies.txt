@@ -1,0 +1,9 @@
+keras==2.2.4
+python-gflags==3.1.2
+opencv-python==4.2.0.32
+rospkg==1.2.3
+imutils==0.5.3
+defusedxml==0.6.0
+pyside2==5.14.1
+# Tensorflow is also a dependency, but it should be installed using the Anaconda.
+# conda install tensorflow-gpu==1.12.0
