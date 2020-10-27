@@ -10,7 +10,9 @@ Video: [YouTube](https://youtu.be/8ws1VSvASHc)
   <img src="./sim2real_drone_racing/docs/experiment.gif" alt="ddr">
 </p>
 
-[![video](./sim2real_drone_racing/docs/experiment.gif)](https://youtu.be/8ws1VSvASH)
+<p align="center">
+[![video](./sim2real_drone_racing/docs/experiment.gif)](https://youtu.be/8ws1VSvASHc)
+</p>
 
 ## Installation
 
