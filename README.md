@@ -7,7 +7,7 @@ Our navigation system was only trained using synthetic textures but is able to n
 Video: [YouTube](https://youtu.be/8ws1VSvASHc)
 
 <p align="center">
-  <img src="./sim2real_drone_racing/docs/sim2real.gif" alt="ddr">
+  <img src="./sim2real_drone_racing/docs/experiment.gif" alt="ddr">
 </p>
 
 ## Installation
