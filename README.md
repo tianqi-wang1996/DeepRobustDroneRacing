@@ -89,7 +89,7 @@ roslaunch test_racing test_racing.launch
 
 ```
 
-## Train your own Drone Racing Model
+## Train your own Drone Racing Model on Our Collected Data
 You can also generate data in simulation and train your model on it. 
 
 In this paper, we use a customized DAgger policy to alleviate the drawback of pure imitation learning. If you want skip the time-consuming procedure of data collection and intermediate training process, our final colllected data is shared in [this link](https://drive.google.com/file/d/1o8MM5zCbC3CgiHmArsvOy51HmqmRe46R/view?usp=sharing). Unzip the files into folder ./sim2real_drone_racing/learning/deep_drone_racing_learner/data and then train the network
@@ -106,6 +106,11 @@ train_data=../../data/Training_final_test (just as an example)
 
 ```
 After training finishes, following the aforementioned commands in Race with Trained Network to test your newly trained network.
+
+
+
+
+
 
 If you want to follow the whole procedures of how we got our final accumulated training data, read the following section: 
 ## Our Customized Data Collection and Training Strategy
