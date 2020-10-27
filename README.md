@@ -17,7 +17,7 @@ Video: [YouTube](https://youtu.be/8ws1VSvASHc)
 The code was tested with Ubuntu 18.04 and ROS Melodic (Python2.7).
 Different OS and ROS versions are possible but with the possibility of potential conflict.
 
-### Step-by-Step Procedure
+### Installation Procedure
 
 Use the following commands to create a new catkin workspace and a virtual environment with all the required dependencies.
 
@@ -50,32 +50,32 @@ source ../devel/setup.bash
 ```
 
 
-## Let's Race
+## Race with Trained Network
 
-Once you have installed the dependencies, you will be able to fly in simulation with our pre-trained checkpoint. You don't need GPU for execution. Note that if the network can't run at least at 10Hz, you won't be able to fly successfully.
+We have provided our final trained checkpoint file in this repository.
+If you want to change the checkpoint file used for testing, go to sim2real_drone_racing/learning/deep_drone_racing_learning_node/launch/net_controller_launch.launch
+and change the this line
+<arg name="ckpt_file" default="$(find deep_drone_racing_learner)/src/ddr_learner/results/best_model_without_warmup_1.5/model_latest"/>
 
 Open a terminal and type:
 ```bash
-cd drone_racing_ws
-. ./catkin_ddr/devel/setup.bash
-. ./droneflow/bin/activate
-export CUDA_VISIBLE_DEVICES=''
+conda activate virtual_env
 roslaunch deep_drone_racing_learning  net_controller_launch.launch
 
 ```
 
 Open an other terminal and type:
 ```bash
-cd drone_racing_ws
-. ./catkin_ddr/devel/setup.bash
-. ./droneflow/bin/activate
+conda activate virtual_env
 roslaunch test_racing test_racing.launch
 
 ```
 
-## Train your own Sim2Real model
+## Train your own Drone Racing Model
+You can also generate data in simulation and train your model on it. 
 
-You can use the following commands to generate data in simulation and train your model on it. The trained checkpoint can then be used to control a physical platform on a race track.
+In this paper, we use a customized DAgger policy to alleviate the drawback of pure imitation learning. If you want skip the time-consuming procedure of data collection and intermediate training process, our final colllected data is shared in [this link (http://rpg.ifi.uzh.ch/datasets/sim2real_ddr/validation_real_data.zip).
+
 
 ### Generate data
 
