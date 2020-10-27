@@ -53,7 +53,7 @@ source ../devel/setup.bash
 ## Race with Trained Network
 
 We have provided our final trained checkpoint file in this repository.
-If you want to change the checkpoint file used for testing once you have trained a new one, go to [net_controller_launch.launch](./sim2real_drone_racing/learning/deep_drone_racing_learning_node/launch/net_controller_launch.launch) sim2real_drone_racing/learning/deep_drone_racing_learning_node/launch/net_controller_launch.launch
+If you want to change the checkpoint file used for testing once you have trained a new one, go to [net_controller_launch.launch](./sim2real_drone_racing/learning/deep_drone_racing_learning_node/launch/net_controller_launch.launch) 
 and change the this line:
 ```bash
 <arg name="ckpt_file" default="$(find deep_drone_racing_learner)/src/ddr_learner/results/best_model_without_warmup_1.5/model_latest"/>
@@ -98,17 +98,18 @@ conda activate virtual_env
 roscd deep_drone_racing_learner/src/ddr_learner
 # under this folder, first modify the training bash file - train_model.sh,
 # change the training data directory
-train_data=../../data/Training_final_test (just for example)
+train_data=../../data/Training_final_test (just as an example)
 # change the checkpoint directory where you want to store the trained checkpoints
---checkpoint_dir=./results/best_final_1024 (just for example)
+--checkpoint_dir=./results/best_final_1024 (just as an example)
 # then, run the training bash file
 ./train_model.sh
 
 ```
-After training finishes, following the aforementioned commands to test your newly trained network.
+After training finishes, following the aforementioned commands in Race with Trained Network to test your newly trained network.
 
-
-### DAgger Step1: Generate data
+If you want to follow the whole procedures of how we got our final accumulated training data, read the following section: 
+## Our Customized Data Collection and Training Strategy
+### Step1: Generate data
 
 ```bash
 cd drone_racing_ws
@@ -122,7 +123,6 @@ python collect_data.py
 It is possible to change parameters (number of iteration per background/ gate texture/ etc. ) in the above script.
 Defaults should be good. Optionally, you can use the data we have already collected, available at [this link](http://rpg.ifi.uzh.ch/datasets/sim2real_ddr/simulation_training_data.zip).
 
-
 ### DAgger Step2: Train the Network
 
 ```bash
@@ -135,37 +135,5 @@ Then, run the following command to train the model.
 
 ```bash
 ./train_model.sh
-
-```
-
-### Test the Network
-
-Edit the following file to use the checkpoint you just trained
-
-```bash
-rosed deep_drone_racing_learning net_controller_launch.launch
-
-```
-
-The trained network can now be tested in an environment which was never observed at training time.
-
-Open a terminal and run:
-
-```bash
-cd drone_racing_ws
-. ./catkin_ddr/devel/setup.sh
-. ./droneflow/bin/activate
-export CUDA_VISIBLE_DEVICES=''
-roslaunch deep_drone_racing_learning  net_controller_launch.launch
-
-```
-
-Open another terminal and run:
-
-```bash
-cd drone_racing_ws
-. ./catkin_ddr/devel/setup.sh
-. ./droneflow/bin/activate
-roslaunch test_racing test_racing.launch
 
 ```
