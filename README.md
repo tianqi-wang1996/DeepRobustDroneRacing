@@ -121,7 +121,7 @@ Before start, first modify [simulation_no_quad_gui.launch](./sim2real_drone_raci
 ```
 Each DAgger step consist of two sub-steps: generating new data & train on accumulated data.
 ### DAgger Step 1: Generate data
-####If we don't have any trained checkpoint yet, refer to the following instructions:
+#### If we don't have any trained checkpoint yet, refer to the following instructions:
 
 Sine we don't have any trained network initially, we only use the expert policy to collect data by setting use_DAgger to false in [main.yaml](./sim2real_drone_racing/drone_racing/drone_racing/parameters/main.yaml)
 ```bash
@@ -141,7 +141,7 @@ roscd drone_racing/resources/scripts
 python collect_data.py
 
 ```
-####If we have trained checkpoints, refer to the following instructions:
+#### If we have trained checkpoints, refer to the following instructions:
 Set use_DAgger to true in [main.yaml](./sim2real_drone_racing/drone_racing/drone_racing/parameters/main.yaml)
 ```bash
 use_DAgger : true
@@ -187,7 +187,7 @@ train_data=../../data/Training_final_test (just as an example)
 
 ```
 
-Then, run the training bash file
+Then, run the training bash file, open one terminal and type
 ```bash
 conda activate virtual_env
 roscd deep_drone_racing_learner/src/ddr_learner
