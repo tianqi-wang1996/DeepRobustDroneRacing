@@ -53,8 +53,8 @@ source ../devel/setup.bash
 ## Race with Trained Network
 
 We have provided our final trained checkpoint file in this repository.
-If you want to change the checkpoint file used for testing, go to [net_controller_launch.launch](./sim2real_drone_racing/learning/deep_drone_racing_learning_node/launch/net_controller_launch.launch) sim2real_drone_racing/learning/deep_drone_racing_learning_node/launch/net_controller_launch.launch
-and change the this line
+If you want to change the checkpoint file used for testing once you have trained a new one, go to [net_controller_launch.launch](./sim2real_drone_racing/learning/deep_drone_racing_learning_node/launch/net_controller_launch.launch) sim2real_drone_racing/learning/deep_drone_racing_learning_node/launch/net_controller_launch.launch
+and change the this line:
 ```bash
 <arg name="ckpt_file" default="$(find deep_drone_racing_learner)/src/ddr_learner/results/best_model_without_warmup_1.5/model_latest"/>
 ```
@@ -76,9 +76,19 @@ roslaunch test_racing test_racing.launch
 ## Train your own Drone Racing Model
 You can also generate data in simulation and train your model on it. 
 
-In this paper, we use a customized DAgger policy to alleviate the drawback of pure imitation learning. If you want skip the time-consuming procedure of data collection and intermediate training process, our final colllected data is shared in [this link](http://rpg.ifi.uzh.ch/datasets/sim2real_ddr/simulation_training_data.zip).
+In this paper, we use a customized DAgger policy to alleviate the drawback of pure imitation learning. If you want skip the time-consuming procedure of data collection and intermediate training process, our final colllected data is shared in [this link](https://drive.google.com/file/d/1o8MM5zCbC3CgiHmArsvOy51HmqmRe46R/view?usp=sharing). Unzip the files into folder ./sim2real_drone_racing/learning/deep_drone_racing_learner/data and then train the network
+```bash
+conda activate virtual_env
+roscd deep_drone_racing_learner/src/ddr_learner
+# under this folder, first modify the training data directory in the training bash file - train_model.sh, change this line:
+train_data=../../data/Training_final_test
+# then, run the training bash file
+./train_model.sh
 
-### Generate data
+```
+
+
+### DAgger Step1: Generate data
 
 ```bash
 cd drone_racing_ws
@@ -93,7 +103,7 @@ It is possible to change parameters (number of iteration per background/ gate te
 Defaults should be good. Optionally, you can use the data we have already collected, available at [this link](http://rpg.ifi.uzh.ch/datasets/sim2real_ddr/simulation_training_data.zip).
 
 
-### Train the Network
+### DAgger Step2: Train the Network
 
 ```bash
 roscd deep_drone_racing_learner/src/ddr_learner
