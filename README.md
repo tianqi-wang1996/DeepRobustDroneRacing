@@ -4,7 +4,7 @@ This kind of modularazation enables us to combine the robustness provided by dat
 
 Our navigation system was only trained using synthetic textures but is able to navigate in environment with randomly-chosen photorealistic textures.
 
-Video: [YouTube](https://youtu.be/8ws1VSvASHc)
+Video: [YouTube](https://youtu.be/-n_liOxU7rA)
 
 <p align="center">
   <img src="./sim2real_drone_racing/docs/experiment.gif" alt="ddr">
