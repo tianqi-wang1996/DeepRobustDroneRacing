@@ -112,7 +112,6 @@ After training finishes, following the aforementioned commands in Race with Trai
 \
 \
 \
-
 If you want to follow the whole procedures of how we got our final accumulated training data, read the following section: 
 ## Our Customized Data Collection and Training Strategy
 
