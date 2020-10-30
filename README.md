@@ -88,6 +88,7 @@ conda activate virtual_env
 roslaunch test_racing test_racing.launch
 
 ```
+One thing to be noticed is that, sometimes pressing ctrl + c in the terminal couldn't kill all the processes involved. In order to terminate it and make your next try errorless, you should either close the terminals, or open the Sytem Monitor (for Ubuntu) and search ros, and kill all the processes related to ros.
 
 ## Train your own Drone Racing Model on Our Collected Data
 
