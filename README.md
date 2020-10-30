@@ -90,7 +90,7 @@ roslaunch test_racing test_racing.launch
 ```
 One thing to be noticed is that, sometimes pressing ctrl + c in the terminal couldn't kill all the processes involved. In order to terminate it and make your next try errorless, you should either close the terminals, or open the Sytem Monitor (for Ubuntu) and search ros, and kill all the processes related to ros.
 
-## Train your own Drone Racing Model on Our Collected Data
+## Train Your Own Drone Racing Model on Our Collected Data
 
 You can also generate data in simulation and train your model on it. 
 
@@ -124,7 +124,6 @@ Before start, first modify [simulation_no_quad_gui.launch](./sim2real_drone_raci
 Each DAgger step consist of two sub-steps: generating new data & train on accumulated data.
 ### DAgger Step 1: Generate data
 #### If we don't have any trained checkpoint yet, refer to the following instructions:
-
 Sine we don't have any trained network initially, we only use the expert policy to collect data by setting use_DAgger to false in [main.yaml](./sim2real_drone_racing/drone_racing/drone_racing/parameters/main.yaml)
 ```bash
 use_DAgger : false
