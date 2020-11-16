@@ -22,7 +22,7 @@ Different OS and ROS versions are possible but with the possibility of potential
 Use the following commands to create a new catkin workspace and a virtual environment with all the required dependencies.
 
 ```bash
-# first create a new ros workpace
+# first create a new ros workspace
 cd ~
 mkdir -p drone_racing_worksapce/src
 cd ~/drone_racing_worksapce/src
@@ -51,7 +51,7 @@ catkin build
 source ../devel/setup.bash
 
 # add this line to bash.rc file in order to automatically source this workspace next time
-echo "source /opt/ros/indigo/setup.bash" >> ~/.bashrc
+echo "source ~/drone_racing_worksapce/devel/setup.bash" >> ~/.bashrc
 
 ```
 
