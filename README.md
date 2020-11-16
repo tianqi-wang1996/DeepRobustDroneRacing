@@ -17,23 +17,12 @@ Video: [YouTube](https://youtu.be/-n_liOxU7rA)
 The code was tested with Ubuntu 18.04 and ROS Melodic (Python2.7).
 Different OS and ROS versions are possible but with the possibility of potential conflict.
 
-### Installation Proced
+### Installation Process
 
 Use the following commands to create a new catkin workspace and a virtual environment with all the required dependencies.
 
 ```bash
-# first install Anaconda in your computer for using virtual environments
-# then create a new environment with python2.7 option
-conda create -n virtual_env python=2.7.17
-# activate this environment
-conda activate virtual_env
-
-# install required packages
-pip install -r python_dependencies.txt
-# install tensoflow using anaconda
-conda install tensorflow-gpu==1.12.0
-
-#create a new ros workpace
+# first create a new ros workpace
 cd ~
 mkdir -p drone_racing_worksapce/src
 cd ~/drone_racing_worksapce/src
@@ -44,9 +33,26 @@ catkin build
 cd ~/drone_racing_worksapce/src
 git clone https://github.com/tianqi-wang1996/DeepRobustDroneRacing.git
 
+# install Anaconda in your computer for using virtual environments
+# then create a new environment with python2.7 option
+conda create -n virtual_env python=2.7.17
+# activate this environment
+conda activate virtual_env
+
+# install required packages
+cd ~/drone_racing_worksapce/src/sim2real_racing
+pip install -r python_dependencies.txt
+# install tensoflow using anaconda
+conda install tensorflow-gpu==1.12.0
+
 # Build and re-source the workspace
+cd ~/drone_racing_worksapce/src
 catkin build
 source ../devel/setup.bash
+
+# add this line to bash.rc file in order to automatically source this workspace next time
+echo "source /opt/ros/indigo/setup.bash" >> ~/.bashrc
+
 ```
 
 
