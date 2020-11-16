@@ -40,7 +40,7 @@ conda create -n virtual_env python=2.7.17
 conda activate virtual_env
 
 # install required packages
-cd ~/drone_racing_worksapce/src/sim2real_racing
+cd ~/drone_racing_worksapce/src/sim2real_drone_racing
 pip install -r python_dependencies.txt
 # install tensoflow using anaconda
 conda install tensorflow-gpu==1.12.0
